@@ -13,5 +13,6 @@ namespace LemonadeStand
             
         }
         Day currentDay = new Day();
+        Player player = new Player();
     }
 }

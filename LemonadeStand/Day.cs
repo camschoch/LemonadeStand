@@ -9,25 +9,24 @@ namespace LemonadeStand
     public class Day
     {
         public int cupsSold = 0;
+        public Weather currentWeather = new Weather();
         public Day()
         {
         }
-        Weather currentDay = new Weather();
-        Customer tempCustomer = new Customer();
         public int getNumberOfCustomers()
         {
             Random random = new Random();
-            if (currentDay.weather == "sunny")
+            if (currentWeather.weather == "sunny")
             {
                 int numberOfCustomers = random.Next(100, 150);
                 return numberOfCustomers;
             }
-            else if (currentDay.weather == "cloudy")
+            else if (currentWeather.weather == "cloudy")
             {
                 int numberOfCustomers = random.Next(80, 130);
                 return numberOfCustomers;
             }
-            else if (currentDay.weather == "rainy")
+            else if (currentWeather.weather == "rainy")
             {
                 int numberOfCustomers = random.Next(50, 100);
                 return numberOfCustomers;
@@ -38,14 +37,13 @@ namespace LemonadeStand
                 return numberOfCustomers;
             }
         }
-        public void setAllCustomers()
-        {
-            int numberOfCustomers = getNumberOfCustomers();
-            for (int i = 0; i < numberOfCustomers; i++)
-            {
-                Customer tempCustomer = new Customer();
+        //public void setAllCustomers()
+        //{
+        //    int numberOfCustomers = getNumberOfCustomers();
+        //    for (int i = 0; i < numberOfCustomers; i++)
+        //    {
 
-            }
-        }
+        //    }
+        //}
     }
 }
