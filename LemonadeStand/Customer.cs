@@ -6,68 +6,74 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Customer
+    public class Customer
     {
-        int thirstLvl;
-        Day currentDay = new Day();
-        string weatherpattern = currentDay.currentWeather.weather;
-        
-        public Customer()
+        //Day currentDay = new Day();
+        Weather currentWeather;
+        public int thirstLvl;
+        public Customer(int thirstLvl)
         {
+            this.thirstLvl = thirstLvl;
         }
-        public int getWeatherThirst()
+        public void getWeatherThirst()
         {
+            
             Random random = new Random();
+            string weather = currentWeather.weather;
             if (weather == "sunny")
             {
-                cue
+                
                 int randomNumber = random.Next(40, 85);
-                int thirstLvl = randomNumber;
-                return thirstLvl;
+                int thirstLvlTest = randomNumber;
+                thirstLvl = thirstLvlTest;
             }
             else if (weather == "cloudy")
             {
                 int randomNumber = random.Next(60, 95);
-                int thirstLvl = randomNumber;
-                return thirstLvl;
+                int thirstLvlTest = randomNumber;
+                thirstLvl = thirstLvlTest;
             }
             else if (weather == "rainy")
             {
                 int randomNumber = random.Next(70, 100);
-                int thirstLvl = randomNumber;
-                return thirstLvl;
-            }
-            else
-            {
-                int failSafe = 75;
-                return failSafe;
+                int thirstLvlTest = randomNumber;
+                thirstLvl = thirstLvlTest;
             }
         }
-        public int calculateThirst()
+        public void calculateThirst()
         {
-            int weatherThirst = getWeatherThirst();
+            int temp = currentWeather.temp;
+            int weatherThirst = thirstLvl;
             if (temp == 65)
             {
                 weatherThirst += 10;
-                return weatherThirst;
+                thirstLvl = weatherThirst;
             }
             else if (temp == 75)
             {
                 weatherThirst -= 5;
-                return weatherThirst;
+                thirstLvl = weatherThirst;
             }
             else if (temp == 90)
             {
                 weatherThirst -= 15;
-                return weatherThirst;
+                thirstLvl = weatherThirst;
             }
             else
             {
-                weather += 0;
-                return weatherThirst;
+                weatherThirst += 0;
+                thirstLvl = weatherThirst;
             }
         }
-        public void
+        public void willOrNotBuy()
+        {
+            Random random = new Random();
+            List<int> oneHundred = new List<int>();
+            for(int i = 1; i < 100; i++)
+            {
+                oneHundred.Add(i);
+            }
+        }
         //public void buyOrNo()
         //{
         //    Random random = new Random();
@@ -78,6 +84,5 @@ namespace LemonadeStand
         //    {
         //        cupsSold++;
         //    }
-    }
     }
 }

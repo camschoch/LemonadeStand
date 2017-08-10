@@ -10,6 +10,7 @@ namespace LemonadeStand
     {
         public int cupsSold = 0;
         public Weather currentWeather = new Weather();
+        public Customer tempCustomer;
         public Day()
         {
         }
@@ -37,13 +38,17 @@ namespace LemonadeStand
                 return numberOfCustomers;
             }
         }
-        //public void setAllCustomers()
-        //{
-        //    int numberOfCustomers = getNumberOfCustomers();
-        //    for (int i = 0; i < numberOfCustomers; i++)
-        //    {
+        public void setAllCustomers()
+        {
+            int numberOfCustomers = getNumberOfCustomers();
+            for (int i = 0; i < numberOfCustomers; i++)
+            {
+                tempCustomer.getWeatherThirst();
+                tempCustomer.calculateThirst();
+                int thirstLvl = tempCustomer.thirstLvl;
+                tempCustomer = new Customer(thirstLvl);
 
-        //    }
-        //}
+            }
+        }
     }
 }

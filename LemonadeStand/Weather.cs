@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Weather
+    public class Weather
     {
         public Weather()
         {
@@ -49,56 +49,6 @@ namespace LemonadeStand
             int temp = weatherType[randomNumber];
             return temp;
         }
-        //public int getWeatherThirst()
-        //{
-        //    Random random = new Random();
-        //    if (weather == "sunny")
-        //    {
-        //        int randomNumber = random.Next(40, 85);
-        //        int thirstLvl = randomNumber;
-        //        return thirstLvl;
-        //    }
-        //    else if (weather == "cloudy")
-        //    {
-        //        int randomNumber = random.Next(60, 95);
-        //        int thirstLvl = randomNumber;
-        //        return thirstLvl;
-        //    }
-        //    else if (weather == "rainy")
-        //    {
-        //        int randomNumber = random.Next(70, 100);
-        //        int thirstLvl = randomNumber;
-        //        return thirstLvl;
-        //    }
-        //    else
-        //    {
-        //        int failSafe = 75;
-        //        return failSafe;
-        //    }
-        //}
-        //public int calculateThirst()
-        //{
-        //    int weatherThirst = getWeatherThirst();
-        //    if (temp == 65)
-        //    {
-        //        weatherThirst += 10;
-        //        return weatherThirst;
-        //    }
-        //    else if (temp == 75)
-        //    {
-        //        weatherThirst -= 5;
-        //        return weatherThirst;
-        //    }
-        //    else if (temp == 90)
-        //    {
-        //        weatherThirst -= 15;
-        //        return weatherThirst;
-        //    }
-        //    else
-        //    {
-        //        weather += 0;
-        //        return weatherThirst;
-        //    }
-        //}
+       
     }
 }
