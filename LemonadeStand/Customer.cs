@@ -10,7 +10,9 @@ namespace LemonadeStand
     {
         //Day currentDay = new Day();
         Weather currentWeather;
+        Day currentDay;
         public int thirstLvl;
+        int likelinessToBuy;
         public Customer(int thirstLvl)
         {
             this.thirstLvl = thirstLvl;
@@ -68,11 +70,18 @@ namespace LemonadeStand
         public void willOrNotBuy()
         {
             Random random = new Random();
-            List<int> oneHundred = new List<int>();
-            for(int i = 1; i < 100; i++)
+            //List<int> oneHundred = new List<int>();
+            //for(int i = 1; i < 100; i++)
+            //{
+            //    oneHundred.Add(i);
+            //}
+            int randomNumber = random.Next(0, 101);
+
+            if(randomNumber <= ????)
             {
-                oneHundred.Add(i);
+                currentDay.cupsSold++;
             }
+            
         }
         //public void buyOrNo()
         //{
