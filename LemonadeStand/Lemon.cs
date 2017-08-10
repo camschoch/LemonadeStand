@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    public class Recipe
+    class Lemon
     {
+        List<int> lemonsPerDay = new List<int> { };
     }
 }

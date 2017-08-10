@@ -8,5 +8,7 @@ namespace LemonadeStand
 {
     class Player
     {
+        Inventory playerInventory = new Inventory();
+        Store walmart = new Store();
     }
 }

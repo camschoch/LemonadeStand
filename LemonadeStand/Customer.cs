@@ -10,9 +10,9 @@ namespace LemonadeStand
     {
         //Day currentDay = new Day();
         Weather currentWeather;
-        Day currentDay;
+        Day currentDay; 
         public int thirstLvl;
-        int likelinessToBuy;
+        int likelinessToBuy = 50; 
         public Customer(int thirstLvl)
         {
             this.thirstLvl = thirstLvl;
@@ -25,19 +25,19 @@ namespace LemonadeStand
             if (weather == "sunny")
             {
                 
-                int randomNumber = random.Next(40, 85);
+                int randomNumber = random.Next(30, 50);
                 int thirstLvlTest = randomNumber;
                 thirstLvl = thirstLvlTest;
             }
             else if (weather == "cloudy")
             {
-                int randomNumber = random.Next(60, 95);
+                int randomNumber = random.Next(50, 80);
                 int thirstLvlTest = randomNumber;
                 thirstLvl = thirstLvlTest;
             }
             else if (weather == "rainy")
             {
-                int randomNumber = random.Next(70, 100);
+                int randomNumber = random.Next(80, 100);
                 int thirstLvlTest = randomNumber;
                 thirstLvl = thirstLvlTest;
             }
@@ -48,17 +48,17 @@ namespace LemonadeStand
             int weatherThirst = thirstLvl;
             if (temp == 65)
             {
-                weatherThirst += 10;
+                weatherThirst += 20;
                 thirstLvl = weatherThirst;
             }
             else if (temp == 75)
             {
-                weatherThirst -= 5;
+                weatherThirst -= 10;
                 thirstLvl = weatherThirst;
             }
             else if (temp == 90)
             {
-                weatherThirst -= 15;
+                weatherThirst -= 20;
                 thirstLvl = weatherThirst;
             }
             else
@@ -67,6 +67,7 @@ namespace LemonadeStand
                 thirstLvl = weatherThirst;
             }
         }
+
         public void willOrNotBuy()
         {
             Random random = new Random();
@@ -75,9 +76,9 @@ namespace LemonadeStand
             //{
             //    oneHundred.Add(i);
             //}
-            int randomNumber = random.Next(0, 101);
+            int randomNumber = random.Next(1, 101);
 
-            if(randomNumber <= ????)
+            if(randomNumber <= likelinessToBuy)
             {
                 currentDay.cupsSold++;
             }
