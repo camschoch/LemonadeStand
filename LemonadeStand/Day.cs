@@ -14,7 +14,7 @@ namespace LemonadeStand
         public Day()
         {
         }
-        public int getNumberOfCustomers()
+        public int GetNumberOfCustomers()
         {
             Random random = new Random();
             if (currentWeather.weather == "sunny")
@@ -38,13 +38,13 @@ namespace LemonadeStand
                 return numberOfCustomers;
             }
         }
-        public void setAllCustomers()
+        public void SetAllCustomers()
         {
-            int numberOfCustomers = getNumberOfCustomers();
+            int numberOfCustomers = GetNumberOfCustomers();
             for (int i = 0; i < numberOfCustomers; i++)
             {
-                tempCustomer.getWeatherThirst();
-                tempCustomer.calculateThirst();
+                tempCustomer.GetWeatherThirst();
+                tempCustomer.CalculateThirst();
                 int thirstLvl = tempCustomer.thirstLvl;
                 tempCustomer = new Customer(thirstLvl);
 

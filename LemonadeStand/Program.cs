@@ -10,6 +10,9 @@ namespace LemonadeStand
     {
         static void Main(string[] args)
         {
+            
+            //Customer test = new Customer(0);
+            //double teatOne = test.RandomNumberBetween(.25, 1.50);
         }
 
     }

@@ -8,16 +8,17 @@ namespace LemonadeStand
 {
     public class Customer
     {
-        //Day currentDay = new Day();
         Weather currentWeather;
-        Day currentDay; 
+        Day currentDay;
+        Player player;
         public int thirstLvl;
+        public double maxBuyPrice;
         int likelinessToBuy = 50; 
         public Customer(int thirstLvl)
         {
             this.thirstLvl = thirstLvl;
         }
-        public void getWeatherThirst()
+        public void GetWeatherThirst()
         {
             
             Random random = new Random();
@@ -42,7 +43,7 @@ namespace LemonadeStand
                 thirstLvl = thirstLvlTest;
             }
         }
-        public void calculateThirst()
+        public void CalculateThirst()
         {
             int temp = currentWeather.temp;
             int weatherThirst = thirstLvl;
@@ -68,22 +69,47 @@ namespace LemonadeStand
             }
         }
 
-        public void willOrNotBuy()
+        public void WillOrNotBuy()
         {
             Random random = new Random();
-            //List<int> oneHundred = new List<int>();
-            //for(int i = 1; i < 100; i++)
-            //{
-            //    oneHundred.Add(i);
-            //}
             int randomNumber = random.Next(1, 101);
 
             if(randomNumber <= likelinessToBuy)
             {
                 currentDay.cupsSold++;
             }
-            
         }
+        public void SetRandomBuyMax(double minValue, double maxValue)
+        {
+            Random random = new Random();
+            double next = random.NextDouble();
+
+            double unRounded = minValue + (next * (maxValue - minValue));
+            double rounded = Math.Round(unRounded, 2);
+            maxBuyPrice = rounded;
+            //////////////REMEMBER TO SET THE RANGE WHEN CALLING THE METHOD!!!
+        }
+
+        public void PreferedRecipe()
+        {
+            Random random = new Random();
+            int randomNumber = random.Next(0, 7);
+            List<string> recipies = new List<string> { "standard", "sour", "sweet", "strong", "strong", "strong", "strong"};
+            string randomRecipe = recipies[randomNumber];
+            //switch (randomRecipe)
+            //{
+            //    case "standard":
+            //        break;
+            //    case "sour":
+            //        break;
+            //    case "sweet":
+            //        break;
+            //    case "strong":
+            //        break;
+            //}
+            ////////////// USE THIS WHEN WORKING ON HAVING THE PLAYER CHOOSE A RECIPE!!!!!!
+        }
+
         //public void buyOrNo()
         //{
         //    Random random = new Random();

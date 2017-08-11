@@ -8,5 +8,10 @@ namespace LemonadeStand
 {
     public class Recipe
     {
+        public double price;
+        public void SetPrice()
+        {
+
+        }
     }
 }

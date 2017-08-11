@@ -8,7 +8,13 @@ namespace LemonadeStand
 {
     class Player
     {
+        public string recipe;
         Inventory playerInventory = new Inventory();
         Store walmart = new Store();
+        //Recipe recipe = new Recipe();
+        public void chooseRecipe()
+        {
+
+        } 
     }
 }

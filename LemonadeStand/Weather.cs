@@ -15,12 +15,12 @@ namespace LemonadeStand
         public string weather;
         public int temp;
 
-        public void getWeatherForcast()
+        public void GetWeatherForcast()
         {
-            weather = randomWeather();
-            temp = getRandomTemp();
+            weather = RandomWeather();
+            temp = GetRandomTemp();
         }
-        public void actualWeather()
+        public void ActualWeather()
         {
             Random random = new Random();
             int randomNumber = random.Next(0, 2);
@@ -28,11 +28,11 @@ namespace LemonadeStand
             string todaysWeather = weatherType[randomNumber];
             if(todaysWeather == "no")
             {
-                weather = randomWeather();
-                temp = getRandomTemp();
+                weather = RandomWeather();
+                temp = GetRandomTemp();
             }
         }
-        public string randomWeather()
+        public string RandomWeather()
         {
             Random random = new Random();
             int randomNumber = random.Next(0, 3);
@@ -41,7 +41,7 @@ namespace LemonadeStand
             return todaysWeather;
         }
 
-        public int getRandomTemp()
+        public int GetRandomTemp()
         {
             Random random = new Random();
             int randomNumber = random.Next(0, 3);
