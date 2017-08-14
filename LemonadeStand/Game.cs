@@ -8,11 +8,11 @@ namespace LemonadeStand
 {
     class Game
     {
+        Day currentDay = new Day();
+        Player player = new Player();
+        UserInterface UI;
         public void startGame()
         {
         }
-        Day currentDay = new Day();
-        Player player = new Player();
-        UserInterface UI = new UserInterface();
     }
 }
