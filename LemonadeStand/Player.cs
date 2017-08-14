@@ -9,7 +9,7 @@ namespace LemonadeStand
     class Player
     {
         public string recipe;
-        public int pitchers = 0;
+        public int pitchers;
         public double playerMoney = 20;
         public int amountOfLemonNeeded;
         public int amountOfSugarNeeded;
@@ -19,10 +19,6 @@ namespace LemonadeStand
         Store store = new Store();
         UserInterface UI;
 
-        public void PlayerName()
-        {
-            
-        }
         public void SetAmountOfIceNeededPerPitcher()
         {
             if (amountOfIceNeededPerCup == 2)
@@ -48,7 +44,7 @@ namespace LemonadeStand
                     {
                         Console.WriteLine("Sorry you are lacking one or more of the items required to make this.");
                         Console.ReadLine();
-                        //RETURN TO MAIN MENU//
+                        UI.MainMenu();
                     }
                     else
                     {

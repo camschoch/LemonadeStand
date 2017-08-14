@@ -8,11 +8,22 @@ namespace LemonadeStand
 {
     class Game
     {
-        Day currentDay = new Day();
+        Day currentDay;
         Player player = new Player();
         UserInterface UI;
-        public void startGame()
+        Weather weather;
+        public void StartGame()
         {
+            weather.GetWeatherForcast();
+            UI.MainMenu();
+        }
+        public void StartPlayerSetup()
+        {
+            UI.CallAllChoosingLemonade();
+        }
+        public void StartDay()
+        {
+            currentDay.CallAllMethodsDay();
         }
     }
 }

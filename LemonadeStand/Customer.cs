@@ -172,7 +172,7 @@ namespace LemonadeStand
                 currentDay.cupsSold++;
             }
         }
-        public void CallAllMethods()
+        public void CallAllMethodsCustomer()
         {
             GetWeatherThirst();
             CalculateThirst();
