@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    public class Weather
+    class Weather
     {
+        public string weather;
+        public int temp;
         public Weather()
         {
         }
         //public string todaysWeather;
-        public string weather;
-        public int temp;
 
         public void GetWeatherForcast()
         {

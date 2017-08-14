@@ -15,9 +15,12 @@ namespace LemonadeStand
         public int amountOfSugarNeeded;
         public int amountOfIceNeededPerCup;
         public int amountOfIceNeededPerPitcher;
-        Inventory inventory = new Inventory();
-        Store store = new Store();
-        UserInterface UI;
+        public Inventory inventory = new Inventory();
+        public Store store = new Store();
+        //UserInterface UI;
+        public Player()
+        {
+        }
 
         public void SetAmountOfIceNeededPerPitcher()
         {
@@ -34,7 +37,7 @@ namespace LemonadeStand
                 amountOfIceNeededPerPitcher = 64;
             }
         }
-        public void SwitchCallNumberOfPitchers()
+        public void SwitchCallNumberOfPitchers(Player player, Game game, Day currentDay,  Weather CurrentWeather, UserInterface UI)
         {
             string userInput = Console.ReadLine();
             switch (userInput)
@@ -44,7 +47,7 @@ namespace LemonadeStand
                     {
                         Console.WriteLine("Sorry you are lacking one or more of the items required to make this.");
                         Console.ReadLine();
-                        UI.MainMenu();
+                        UI.MainMenu(player, game, currentDay, CurrentWeather, UI);
                     }
                     else
                     {
@@ -55,8 +58,7 @@ namespace LemonadeStand
                     if (inventory.NumberOfLemon < amountOfLemonNeeded * 2 || inventory.NumberOfSugar < amountOfSugarNeeded * 2 || inventory.NumberOfIce < amountOfIceNeededPerPitcher * 2)
                     {
                         Console.WriteLine("Sorry you are lacking one or more of the items required to make this many please choose a lower amount.");
-                        Console.ReadLine();
-                        UI.SetNumberOfPitchers();
+                        Console.ReadLine();                        
                     }
                     else
                     {
@@ -67,8 +69,7 @@ namespace LemonadeStand
                     if (inventory.NumberOfLemon < amountOfLemonNeeded * 3 || inventory.NumberOfSugar < amountOfSugarNeeded * 3 || inventory.NumberOfIce < amountOfIceNeededPerPitcher * 3)
                     {
                         Console.WriteLine("Sorry you are lacking one or more of the items required to make this many please choose a lower amount.");
-                        Console.ReadLine();
-                        UI.SetNumberOfPitchers();
+                        Console.ReadLine();                       
                     }
                     else
                     {
@@ -79,8 +80,7 @@ namespace LemonadeStand
                     if (inventory.NumberOfLemon < amountOfLemonNeeded * 4 || inventory.NumberOfSugar < amountOfSugarNeeded * 4 || inventory.NumberOfIce < amountOfIceNeededPerPitcher * 4)
                     {
                         Console.WriteLine("Sorry you are lacking one or more of the items required to make this many please choose a lower amount.");
-                        Console.ReadLine();
-                        UI.SetNumberOfPitchers();
+                        Console.ReadLine();                        
                     }
                     else
                     {
@@ -91,8 +91,7 @@ namespace LemonadeStand
                     if (inventory.NumberOfLemon < amountOfLemonNeeded * 5 || inventory.NumberOfSugar < amountOfSugarNeeded * 5 || inventory.NumberOfIce < amountOfIceNeededPerPitcher * 5)
                     {
                         Console.WriteLine("Sorry you are lacking one or more of the items required to make this many please choose a lower amount.");
-                        Console.ReadLine();
-                        UI.SetNumberOfPitchers();
+                        Console.ReadLine();                        
                     }
                     else
                     {
@@ -104,7 +103,6 @@ namespace LemonadeStand
                     {
                         Console.WriteLine("Sorry you are lacking one or more of the items required to make this many please choose a lower amount.");
                         Console.ReadLine();
-                        UI.SetNumberOfPitchers();
                     }
                     else
                     {
@@ -116,7 +114,6 @@ namespace LemonadeStand
                     {
                         Console.WriteLine("Sorry you are lacking one or more of the items required to make this many please choose a lower amount.");
                         Console.ReadLine();
-                        UI.SetNumberOfPitchers();
                     }
                     else
                     {

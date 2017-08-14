@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    public class Customer
+    class Customer
     {
-        Weather currentWeather;
-        Day currentDay;
-        Player player;
+        
+        //Weather currentWeather;
+        //Day currentDay;
+        //Player player;
         public int thirstLvl;
         public double maxBuyPrice;
         int likelinessToBuy = 50;
@@ -19,11 +20,11 @@ namespace LemonadeStand
         public Customer()
         {
         }
-        private void GetWeatherThirst()
+        private void GetWeatherThirst(Weather CurrentWeather)
         {
-
+            
             Random random = new Random();
-            string weather = currentWeather.weather;
+            string weather = CurrentWeather.weather;
             if (weather == "sunny")
             {
 
@@ -44,9 +45,9 @@ namespace LemonadeStand
                 thirstLvl = thirstLvlTest;
             }
         }
-        private void CalculateThirst()
+        private void CalculateThirst(Weather CurrentWeather)
         {
-            int temp = currentWeather.temp;
+            int temp = CurrentWeather.temp;
             int weatherThirst = thirstLvl;
             if (temp == 65)
             {
@@ -102,7 +103,7 @@ namespace LemonadeStand
             List<string> recipies = new List<string> { "standard", "sour", "sweet", "strong", "strong", "strong", "strong" };
             customerPreferedRecipe = recipies[randomNumber];
         }
-        private void LikenessToBuyIce()
+        private void LikenessToBuyIce(Player player)
         {
             if(player.amountOfIceNeededPerCup == wantedIce)
             {
@@ -113,7 +114,7 @@ namespace LemonadeStand
                 likelinessToBuy -= 10;
             }
         }
-        private void LikenessToBuyTaste()
+        private void LikenessToBuyTaste(Player player)
         {
             if (player.recipe == "sour" || player.recipe == "sweet" && customerPreferedRecipe == "standard" || customerPreferedRecipe == "strong")
             {
@@ -147,7 +148,7 @@ namespace LemonadeStand
                 likelinessToBuy -= 15;
             }
         }
-        private void LikenessToBuyPrice()
+        private void LikenessToBuyPrice(Day currentDay)
         {
             if (currentDay.cupPrice <= maxBuyPrice)
             {
@@ -162,7 +163,7 @@ namespace LemonadeStand
                 likelinessToBuy -= 15;
             }
         }
-        private void WillOrNotBuy()
+        private void WillOrNotBuy(Day currentDay)
         {
             Random random = new Random();
             int randomNumber = random.Next(1, 101);
@@ -172,18 +173,18 @@ namespace LemonadeStand
                 currentDay.cupsSold++;
             }
         }
-        public void CallAllMethodsCustomer()
+        public void CallAllMethodsCustomer(Player player, Day currentDay, Weather CurrentWeather)
         {
-            GetWeatherThirst();
-            CalculateThirst();
+            GetWeatherThirst(CurrentWeather);
+            CalculateThirst(CurrentWeather);
             LikenessToBuyThirstLvl();
             SetPreferedIce();
-            LikenessToBuyIce();
+            LikenessToBuyIce(player);
             PreferedRecipe();
-            LikenessToBuyTaste();
+            LikenessToBuyTaste(player);
             SetRandomBuyMax(0.50, 1.50);
-            LikenessToBuyPrice();
-            WillOrNotBuy();
+            LikenessToBuyPrice(currentDay);
+            WillOrNotBuy(currentDay);
         }
     }
 }

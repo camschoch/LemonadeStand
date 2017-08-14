@@ -6,33 +6,35 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    public class Day
+    class Day
     {
         public int cupsSold = 0;
         public int dayNumber = 1;
         public double cupPrice;
         double totalMoneyForDay;
-        public Weather currentWeather = new Weather();
-        Customer tempCustomer;
+        Weather CurrentWeather;
         Player player;
         UserInterface UI;
-        public Day()
+        public Day(Player player, UserInterface UI, Weather CurrentWeather)
         {
+            this.player = player;
+            this.UI = UI;
+            this.CurrentWeather = CurrentWeather;
         }
         private int GetNumberOfCustomers()
         {
             Random random = new Random();
-            if (currentWeather.weather == "sunny")
+            if (CurrentWeather.weather == "sunny")
             {
                 int numberOfCustomers = random.Next(100, 150);
                 return numberOfCustomers;
             }
-            else if (currentWeather.weather == "cloudy")
+            else if (CurrentWeather.weather == "cloudy")
             {
                 int numberOfCustomers = random.Next(80, 130);
                 return numberOfCustomers;
             }
-            else if (currentWeather.weather == "rainy")
+            else if (CurrentWeather.weather == "rainy")
             {
                 int numberOfCustomers = random.Next(50, 100);
                 return numberOfCustomers;
@@ -78,29 +80,29 @@ namespace LemonadeStand
             double totalDifference = totalMoneyForDay - player.playerMoney;
             return totalDifference;
         }
-        private void DisplayEndOfDayResults()
+        private void DisplayEndOfDayResults(Player player, Game game, Day currentDay, Weather CurrentWeather)
         {
             Console.WriteLine($"You have sold {cupsSold} cups and now have a total of ${player.playerMoney} for a total {CheckLossOrProfit()} of ${GetTotalDifference()}");
             Console.ReadLine();
-            UI.MainMenu();
+            UI.MainMenu(player, game, currentDay, CurrentWeather, UI);
         }
-        private void SetAllCustomers()
+        private void SetAllCustomers(Player player, Day currentDay, Weather CurrentWeather)
         {
             int numberOfCustomers = GetNumberOfCustomers();
             for (int i = 0; i < numberOfCustomers; i++)
             {
-             tempCustomer = new Customer();
-                tempCustomer.CallAllMethodsCustomer();
+                Customer tempCustomer = new Customer();
+                tempCustomer.CallAllMethodsCustomer(player, currentDay, CurrentWeather);
                 CheckPitchersSold();
             }
         }
-        public void CallAllMethodsDay()
+        public void CallAllMethodsDay(Player player, Game game, Day currentDay, Weather CurrentWeather)
         {
-            SetAllCustomers();
+            SetAllCustomers(player, currentDay, CurrentWeather);
             GetToalAmountSold();
             CheckLossOrProfit();
             GetTotalDifference();
-            DisplayEndOfDayResults();
+            DisplayEndOfDayResults(player, game, currentDay, CurrentWeather);
         }
     }
 }

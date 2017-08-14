@@ -9,21 +9,31 @@ namespace LemonadeStand
     class Game
     {
         Day currentDay;
-        Player player = new Player();
-        UserInterface UI;
-        Weather weather;
-        public void StartGame()
+        UserInterface UI = new UserInterface();
+        public Player player = new Player();
+        public Weather CurrentWeather;
+        //public Day currenDay;
+        
+        public void StartGame(Game game)
         {
-            weather.GetWeatherForcast();
-            UI.MainMenu();
+            
+            CurrentWeather = new Weather();
+            CurrentWeather.GetWeatherForcast();
+            UI.MainMenu(player, game, currentDay, CurrentWeather, UI);
         }
-        public void StartPlayerSetup()
+        public void InUI()
         {
-            UI.CallAllChoosingLemonade();
+             UI = new UserInterface();
         }
-        public void StartDay()
+        public void StartPlayerSetup(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI)
         {
-            currentDay.CallAllMethodsDay();
+            UI.CallAllChoosingLemonade(player, game, currentDay, CurrentWeather, UI);
+        }
+        public void StartDay(Game game)
+        {
+            currentDay = new Day(player, UI, CurrentWeather);
+            CurrentWeather.ActualWeather();
+            currentDay.CallAllMethodsDay(player, game, currentDay, CurrentWeather);
         }
     }
 }
