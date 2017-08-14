@@ -9,6 +9,8 @@ namespace LemonadeStand
     public class Day
     {
         public int cupsSold = 0;
+        public int dayNumber = 1;
+        public double cupPrice;
         public Weather currentWeather = new Weather();
         public Customer tempCustomer;
         public Day()

@@ -96,18 +96,37 @@ namespace LemonadeStand
             int randomNumber = random.Next(0, 7);
             List<string> recipies = new List<string> { "standard", "sour", "sweet", "strong", "strong", "strong", "strong"};
             string randomRecipe = recipies[randomNumber];
-            //switch (randomRecipe)
-            //{
-            //    case "standard":
-            //        break;
-            //    case "sour":
-            //        break;
-            //    case "sweet":
-            //        break;
-            //    case "strong":
-            //        break;
-            //}
-            ////////////// USE THIS WHEN WORKING ON HAVING THE PLAYER CHOOSE A RECIPE!!!!!!
+            //NOT YET COMPLETE//
+        }
+        private void LikenessToBuyThirstLvl()
+        {
+            if (thirstLvl >= 50)
+            {
+                likelinessToBuy += 15;
+            }
+            else if (thirstLvl < 50 && thirstLvl >= 80)
+            {
+                likelinessToBuy += 0;
+            }
+            else if (thirstLvl <= 100)
+            {
+                likelinessToBuy -= 15;
+            }
+        }
+        private void LikenessToBuyPrice()
+        {
+            if (currentDay.cupPrice <= maxBuyPrice)
+            {
+                likelinessToBuy += 15;
+            }
+            else if (currentDay.cupPrice >= maxBuyPrice + 2)
+            {
+                likelinessToBuy = 0;
+            }
+            else if (currentDay.cupPrice >= maxBuyPrice)
+            {
+                likelinessToBuy -= 15;
+            }
         }
 
         //public void buyOrNo()

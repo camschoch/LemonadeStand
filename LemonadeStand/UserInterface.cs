@@ -10,7 +10,39 @@ namespace LemonadeStand
     {
         Player player;
         Store store;
-        public void chooseRecipe()
+        Weather weather;
+        Day currentDay;
+
+        //MAIN MENU//
+        public void MainMenu()
+        {
+            Console.WriteLine("Welcome to the main menu. Would you like to visit the store, check the weather forcast, or start your day? (make sure you have the supplies you need to make lemonade for the day).");
+            Console.WriteLine("1 = visit store\n 2 = check forcast\n 3 = start the day.");
+            string userInput = Console.ReadLine();
+            switch (userInput)
+            {
+                case "1":
+                    PlayerStoreOptions();
+                    break;
+                case "2":
+                    Console.WriteLine("the forcast for today is " + weather.weather + "and " + weather.temp + "degrees.");
+                    break;
+                case "3":
+                    Console.WriteLine("You are now begining day number " + currentDay.dayNumber);
+                    Console.ReadLine();
+                    ChooseRecipe();
+                    break;
+                default:
+                    Console.WriteLine("Sorry we didn't understand please try again.");
+                    MainMenu();
+                    break;
+            }
+        }
+
+
+        //END MAIN MENU//
+        //CHOOSING LEMONADE//
+        public void ChooseRecipe()
         {
             Console.WriteLine("Please choose a recipe you would like to make for the day. (type 1, 2, 3, or 4)");
             Console.WriteLine("1 = 4 lemons and 4 sugar cubes per pitcher for a standard taste.");
@@ -41,7 +73,7 @@ namespace LemonadeStand
                     player.amountOfSugarNeeded = 8;
                     break;
                 default:
-                    chooseRecipe();
+                    ChooseRecipe();
                     break;
             }
             SetNumberOfPitchers();
@@ -51,6 +83,14 @@ namespace LemonadeStand
             Console.WriteLine("How many pitchers would you like to make for the day? Max is 7.");
             player.SwitchCallNumberOfPitchers();
         }
+        public void SetPriceForDay()
+        {
+            Console.WriteLine("How much would you like to sell each cup for today? (ex. 1.25 or .50)");
+            //USE THE TRY CATCH TO MAKE SURE USER INPUTS A NUMBER VALUE//
+            string userSetCupPrice = Console.ReadLine();
+            currentDay.cupPrice = Double.Parse(userSetCupPrice);
+        }
+        //END CHOOSING LEMONADE//
         //BEGIN OF STORE INTERACTION//
         public void PlayerStoreOptions()
         {
@@ -62,13 +102,13 @@ namespace LemonadeStand
                     BuyLemonsPrompt();
                     break;
                 case "2":
-                    BuySugar();
+                    BuySugarPrompt();
                     break;
                 case "3":
-                    BuyIce();
+                    BuyIcePrompt();
                     break;
                 case "4":
-                    //////////////////DIRECT PLAYER TO MAIN MENU
+                    MainMenu();
                     break;
                 default:
                     PlayerStoreOptions();
@@ -81,12 +121,12 @@ namespace LemonadeStand
             store.BuyLemons();
 
         }
-        public void BuySugar()
+        public void BuySugarPrompt()
         {
             Console.WriteLine("How many sugar cubes would you like to buy?\n1= $0.10\n5 = $0.50\n10 = $1 (type leave if you don't want to buy)");
             store.BuyLemons();
         }
-        public void BuyIce()
+        public void BuyIcePrompt()
         {
             Console.WriteLine("How many ice cubes would you like to buy?\n10= $0.10\n50 = $0.50\n100 = $1 (type leave if you don't want to buy)");
             store.BuyLemons();
