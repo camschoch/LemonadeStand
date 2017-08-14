@@ -13,19 +13,20 @@ namespace LemonadeStand
         Player player;
         public int thirstLvl;
         public double maxBuyPrice;
-        int likelinessToBuy = 50; 
-        public Customer(int thirstLvl)
+        int likelinessToBuy = 50;
+        string customerPreferedRecipe;
+        int wantedIce;
+        public Customer()
         {
-            this.thirstLvl = thirstLvl;
         }
-        public void GetWeatherThirst()
+        private void GetWeatherThirst()
         {
-            
+
             Random random = new Random();
             string weather = currentWeather.weather;
             if (weather == "sunny")
             {
-                
+
                 int randomNumber = random.Next(30, 50);
                 int thirstLvlTest = randomNumber;
                 thirstLvl = thirstLvlTest;
@@ -43,7 +44,7 @@ namespace LemonadeStand
                 thirstLvl = thirstLvlTest;
             }
         }
-        public void CalculateThirst()
+        private void CalculateThirst()
         {
             int temp = currentWeather.temp;
             int weatherThirst = thirstLvl;
@@ -68,18 +69,23 @@ namespace LemonadeStand
                 thirstLvl = weatherThirst;
             }
         }
-
-        public void WillOrNotBuy()
+        private void SetPreferedIce()
         {
-            Random random = new Random();
-            int randomNumber = random.Next(1, 101);
-
-            if(randomNumber <= likelinessToBuy)
+            if (thirstLvl <= 50)
             {
-                currentDay.cupsSold++;
+                wantedIce += 8;
+            }
+            else if (thirstLvl > 50 && thirstLvl <= 80)
+            {
+                wantedIce += 4;
+            }
+            else if (thirstLvl <= 100)
+            {
+                wantedIce += 2;
             }
         }
-        public void SetRandomBuyMax(double minValue, double maxValue)
+
+        private void SetRandomBuyMax(double minValue, double maxValue)
         {
             Random random = new Random();
             double next = random.NextDouble();
@@ -87,28 +93,56 @@ namespace LemonadeStand
             double unRounded = minValue + (next * (maxValue - minValue));
             double rounded = Math.Round(unRounded, 2);
             maxBuyPrice = rounded;
-            //////////////REMEMBER TO SET THE RANGE WHEN CALLING THE METHOD!!!
         }
 
-        public void PreferedRecipe()
+        private void PreferedRecipe()
         {
             Random random = new Random();
             int randomNumber = random.Next(0, 7);
-            List<string> recipies = new List<string> { "standard", "sour", "sweet", "strong", "strong", "strong", "strong"};
-            string randomRecipe = recipies[randomNumber];
-            //NOT YET COMPLETE//
+            List<string> recipies = new List<string> { "standard", "sour", "sweet", "strong", "strong", "strong", "strong" };
+            customerPreferedRecipe = recipies[randomNumber];
         }
-        private void LikenessToBuyThirstLvl()
+        private void LikenessToBuyIce()
         {
-            if (thirstLvl >= 50)
+            if(player.amountOfIceNeededPerCup == wantedIce)
             {
-                likelinessToBuy += 15;
+                likelinessToBuy += 10;
             }
-            else if (thirstLvl < 50 && thirstLvl >= 80)
+            else if (player.amountOfIceNeededPerCup != wantedIce)
+            {
+                likelinessToBuy -= 10;
+            }
+        }
+        private void LikenessToBuyTaste()
+        {
+            if (player.recipe == "sour" || player.recipe == "sweet" && customerPreferedRecipe == "standard" || customerPreferedRecipe == "strong")
             {
                 likelinessToBuy += 0;
             }
-            else if (thirstLvl <= 100)
+            else if (player.recipe == customerPreferedRecipe)
+            {
+                likelinessToBuy += 15;
+            }
+            else if (player.recipe == "standard" && customerPreferedRecipe == "strong")
+            {
+                likelinessToBuy -= 15;
+            }
+            else if (player.recipe == "strong" && customerPreferedRecipe == "standard")
+            {
+                likelinessToBuy -= 15;
+            }
+        }
+        private void LikenessToBuyThirstLvl()
+        {
+            if (thirstLvl <= 50)
+            {
+                likelinessToBuy += 15;
+            }
+            else if (thirstLvl > 50 && thirstLvl <= 80)
+            {
+                likelinessToBuy += 0;
+            }
+            else if (thirstLvl >= 100)
             {
                 likelinessToBuy -= 15;
             }
@@ -128,16 +162,28 @@ namespace LemonadeStand
                 likelinessToBuy -= 15;
             }
         }
+        private void WillOrNotBuy()
+        {
+            Random random = new Random();
+            int randomNumber = random.Next(1, 101);
 
-        //public void buyOrNo()
-        //{
-        //    Random random = new Random();
-        //    int randomNumber = random.Next(0, 2);
-        //    List<string> willBuy = new List<string>() { "yes", "no" };
-        //    string yesOrNo = willBuy [randomNumber];
-        //    if (yesOrNo == "yes")
-        //    {
-        //        cupsSold++;
-        //    }
+            if (randomNumber <= likelinessToBuy)
+            {
+                currentDay.cupsSold++;
+            }
+        }
+        public void CallAllMethods()
+        {
+            GetWeatherThirst();
+            CalculateThirst();
+            LikenessToBuyThirstLvl();
+            SetPreferedIce();
+            LikenessToBuyIce();
+            PreferedRecipe();
+            LikenessToBuyTaste();
+            SetRandomBuyMax(0.50, 1.50);
+            LikenessToBuyPrice();
+            WillOrNotBuy();
+        }
     }
 }

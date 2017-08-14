@@ -76,11 +76,19 @@ namespace LemonadeStand
                     ChooseRecipe();
                     break;
             }
+            SetAmmountOfIce();
             SetNumberOfPitchers();
+        }
+        public void SetAmmountOfIce()
+        {
+            Console.WriteLine("How much ice would you like to add to each cup sold?");
+            Console.WriteLine("2 = 2 ice per cup for a total of 16 needed to make a pitcher\n4 = 4 ice per cup for a total of 31 needed to make a pitcher\n8 = 8 ice per cup for a total of 64 needed to make a pitcher\n");
+            player.amountOfIceNeededPerCup = int.Parse(Console.ReadLine());
         }
         public void SetNumberOfPitchers()
         {
             Console.WriteLine("How many pitchers would you like to make for the day? Max is 7.");
+            player.SetAmountOfIceNeededPerPitcher();
             player.SwitchCallNumberOfPitchers();
         }
         public void SetPriceForDay()

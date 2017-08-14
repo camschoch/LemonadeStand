@@ -45,10 +45,8 @@ namespace LemonadeStand
             int numberOfCustomers = GetNumberOfCustomers();
             for (int i = 0; i < numberOfCustomers; i++)
             {
-                tempCustomer.GetWeatherThirst();
-                tempCustomer.CalculateThirst();
-                int thirstLvl = tempCustomer.thirstLvl;
-                tempCustomer = new Customer(thirstLvl);
+             tempCustomer = new Customer();
+                tempCustomer.CallAllMethods();
 
             }
         }
