@@ -148,17 +148,17 @@ namespace LemonadeStand
                 likelinessToBuy -= 15;
             }
         }
-        private void LikenessToBuyPrice(Day currentDay)
+        private void LikenessToBuyPrice(Player player)
         {
-            if (currentDay.cupPrice <= maxBuyPrice)
+            if (player.cupPrice <= maxBuyPrice)
             {
                 likelinessToBuy += 15;
             }
-            else if (currentDay.cupPrice >= maxBuyPrice + 2)
+            else if (player.cupPrice >= maxBuyPrice + 2)
             {
                 likelinessToBuy = 0;
             }
-            else if (currentDay.cupPrice >= maxBuyPrice)
+            else if (player.cupPrice >= maxBuyPrice)
             {
                 likelinessToBuy -= 15;
             }
@@ -183,7 +183,7 @@ namespace LemonadeStand
             PreferedRecipe();
             LikenessToBuyTaste(player);
             SetRandomBuyMax(0.50, 1.50);
-            LikenessToBuyPrice(currentDay);
+            LikenessToBuyPrice(player);
             WillOrNotBuy(currentDay);
         }
     }

@@ -8,6 +8,7 @@ namespace LemonadeStand
 {
     class Player
     {
+        public double cupPrice;
         public string recipe;
         public int pitchers;
         public double playerMoney = 20;

@@ -17,7 +17,7 @@ namespace LemonadeStand
         public void MainMenu(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI)
         {
             Console.WriteLine("Welcome to the main menu. Would you like to visit the store, check the weather forcast, or start your day? (make sure you have the supplies you need to make lemonade for the day).");
-            Console.WriteLine("1 = visit store\n2 = check forcast\n3 = start the day\n4 = quit game");
+            Console.WriteLine("1 = visit store\n2 = check forcast\n3 = start the day\n4 = check inventory\n5 = quit game");
             string userInput = Console.ReadLine();
             int dayNumber = 1;
             if(dayNumber == 8)
@@ -40,10 +40,17 @@ namespace LemonadeStand
                 case "3":
                     Console.WriteLine("You are now begining day number " + dayNumber);
                     Console.ReadLine();
+                    dayNumber += 1;
                     game.StartPlayerSetup(player, game, currentDay, CurrentWeather, UI);
                     game.StartDay(game);
                     break;
                 case "4":
+                    Console.WriteLine($"You have {player.inventory.NumberOfLemon} lemons, {player.inventory.NumberOfSugar} sugar cubes, and {player.inventory.NumberOfIce} ice cubes");
+                    Console.WriteLine($"You have ${player.playerMoney}");
+                    Console.ReadLine();
+                    MainMenu(player, game, currentDay, CurrentWeather, UI);
+                    break;
+                case "5":
                     Console.WriteLine("Thanks for playing!");
                     Console.ReadLine();
                     Environment.Exit(0);
@@ -105,19 +112,20 @@ namespace LemonadeStand
             player.SetAmountOfIceNeededPerPitcher();
             player.SwitchCallNumberOfPitchers(player, game, currentDay, CurrentWeather, UI);
         }
-        private void SetPriceForDay(Day currentDay)
+        private void SetPriceForDay(Player player)
         {
             Console.WriteLine("How much would you like to sell each cup for today? (ex. 1.25 or .50)");
             //USE THE TRY CATCH TO MAKE SURE USER INPUTS A NUMBER VALUE//
             string userSetCupPrice = Console.ReadLine();
-            currentDay.cupPrice = Double.Parse(userSetCupPrice);
+            double test = double.Parse(userSetCupPrice);
+            player.cupPrice = test;
         }
         public void CallAllChoosingLemonade(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI)
         {
             ChooseRecipe(player);
             SetAmmountOfIce(player);
             SetNumberOfPitchers(player, game, currentDay, CurrentWeather, UI);
-            SetPriceForDay(currentDay);
+            SetPriceForDay(player);
         }
         //END CHOOSING LEMONADE//
         //BEGIN OF STORE INTERACTION//
