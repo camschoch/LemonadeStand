@@ -6,27 +6,15 @@ using System.IO;
 namespace LemonadeStandUnitTest
 {
     [TestClass]
-    public class UnitTest1
+    public class TestingMethods
     {
         [TestMethod]
-        public void TestAddOneLemon()
+        public void TestAddLemon()
         {
             Store store = new Store();
             Player player = new Player();
             int expectedResult = player.inventory.NumberOfLemon + 1;
-            store.AddOneLemon(player);
-
-            int actualResult = player.inventory.NumberOfLemon;
-
-            Assert.AreEqual(expectedResult, actualResult);
-        }
-        [TestMethod]
-        public void TestAddFiveLemon()
-        {
-            Store store = new Store();
-            Player player = new Player();
-            int expectedResult = player.inventory.NumberOfLemon + 5;
-            store.AddFiveLemon(player);
+            store.AddLemons(player, 1);
 
             int actualResult = player.inventory.NumberOfLemon;
 
@@ -34,50 +22,124 @@ namespace LemonadeStandUnitTest
         }
 
         [TestMethod]
-        public void TestAddTenLemon()
-        {
-            Store store = new Store();
-            Player player = new Player();
-            int expectedResult = player.inventory.NumberOfLemon + 10;
-            store.AddTenLemon(player);
-
-            int actualResult = player.inventory.NumberOfLemon;
-
-            Assert.AreEqual(expectedResult, actualResult);
-        }
-        [TestMethod]
-        public void TestAddOneSugar()
+        public void TestAddSugar()
         {
             Store store = new Store();
             Player player = new Player();
             int expectedResult = player.inventory.NumberOfSugar + 1;
-            store.AddOneSugar(player);
+            store.AddSugar(player, 1);
 
             int actualResult = player.inventory.NumberOfSugar;
 
 
             Assert.AreEqual(expectedResult, actualResult);
         }
+
         [TestMethod]
-        public void TestAddFiveSugar()
+        public void TestAddIce()
         {
             Store store = new Store();
             Player player = new Player();
-            int expectedResult = player.inventory.NumberOfSugar + 5;
-            store.AddFiveSugar(player);
+            int expectedResult = player.inventory.NumberOfIce + 10;
+            store.AddIce(player, 10);
 
-            int actualResult = player.inventory.NumberOfSugar;
+            int actualResult = player.inventory.NumberOfIce;
+
 
             Assert.AreEqual(expectedResult, actualResult);
         }
 
         [TestMethod]
-        public void TestAddTenSugar()
+        public void TestSubtractMoney()
         {
             Store store = new Store();
             Player player = new Player();
-            int expectedResult = player.inventory.NumberOfSugar + 10;
-            store.AddTenSugar(player);
+            double expectedResult = player.playerMoney - .10;
+            store.SubtractMoney(player, .10);
+
+            double actualResult = player.playerMoney;
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+        [TestMethod]
+        public void TestSetAmountOfIceNeededPerPitcher()
+        {
+            Player player = new Player();
+            int expectedResult = 16;
+            player.amountOfIceNeededPerCup = 2;
+            player.SetAmountOfIceNeededPerPitcher();
+
+            int actualResult = player.amountOfIceNeededPerPitcher;
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+        [TestMethod]
+        public void TestGetTotalAmountSold()
+        {
+            Player player = new Player();
+            UserInterface UI = new UserInterface();
+            Weather CurrentWeather = new Weather();
+            Day currentDay = new Day(player, UI, CurrentWeather);
+            double expectedResult = 16;
+            currentDay.cupsSold = 8;
+            player.cupPrice = 2;
+            currentDay.GetToalAmountSold(player);
+
+            double actualResult = currentDay.totalMoneyForDay;
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+        [TestMethod]
+        public void TestSetAmountOfIce()
+        {
+            Player player = new Player();
+            UserInterface UI = new UserInterface();
+            double expectedResult = 2;
+            string input = "2";
+            StringReader stringReader = new StringReader(input);
+            Console.SetIn(stringReader);
+
+            UI.SetAmmountOfIce(player);
+            double actualResult = player.amountOfIceNeededPerCup;
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+        [TestMethod]
+        public void TestSetPriceForDay()
+        {
+            Player player = new Player();
+            UserInterface UI = new UserInterface();
+            double expectedResult = 2;
+            string input = "2";
+            StringReader stringReader = new StringReader(input);
+            Console.SetIn(stringReader);
+
+            UI.SetPriceForDay(player);
+            double actualResult = player.cupPrice;
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+        [TestMethod]
+        public void TestSubtractNeededSuppliesLemon()
+        {
+            Player player = new Player();
+            player.amountOfLemonNeeded = 4;
+            player.inventory.NumberOfLemon = 8;
+            int expectedResult = 4;
+            player.SubtractingNeededSupplies();
+
+            int actualResult = player.inventory.NumberOfLemon;
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+        [TestMethod]
+        public void TestSubtractNeededSuppliesSugar()
+        {
+            Player player = new Player();
+            player.amountOfSugarNeeded = 4;
+            player.inventory.NumberOfSugar = 8;
+            int expectedResult = 4;
+            player.SubtractingNeededSupplies();
 
             int actualResult = player.inventory.NumberOfSugar;
 

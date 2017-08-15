@@ -16,18 +16,18 @@ namespace LemonadeStand
             switch (userInput)
             {
                 case "1":
-                    AddOneLemon(player);
-                    SubtractTenCent(player);
+                    AddLemons(player, 1);
+                    SubtractMoney(player, .10);
                     UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
                     break;
                 case "5":
-                    AddFiveLemon(player);
-                    player.playerMoney -= .50;
+                    AddLemons(player, 5);
+                    SubtractMoney(player, .50);
                     UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
                     break;
                 case "10":
-                    player.inventory.NumberOfLemon += 10;
-                    player.playerMoney -= 1;
+                    AddLemons(player, 10);
+                    SubtractMoney(player, 1);
                     UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
                     break;
                 case "leave":
@@ -41,52 +41,25 @@ namespace LemonadeStand
             }
 
         }
-        public void AddOneLemon(Player player)
-        {
-            player.inventory.NumberOfLemon++;
-        }
-        public void AddFiveLemon(Player player)
-        {
-            player.inventory.NumberOfLemon += 5;
-        }
-        public void AddTenLemon(Player player)
-        {
-            player.inventory.NumberOfLemon += 10;
-        }
-        public void AddOneSugar(Player player)
-        {
-            player.inventory.NumberOfSugar++;
-        }
-        public void AddFiveSugar(Player player)
-        {
-            player.inventory.NumberOfSugar += 5;
-        }
-        public void AddTenSugar(Player player)
-        {
-            player.inventory.NumberOfSugar += 10;
-        }
-        public void SubtractTenCent(Player player)
-        {
-            player.playerMoney -= .10;
-        }
+       
         public void BuySugar(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI)
         {
             string userInput = Console.ReadLine();
             switch (userInput)
             {
                 case "1":
-                    player.inventory.NumberOfSugar++;
-                    player.playerMoney -= .10;
+                    AddSugar(player, 1);
+                    SubtractMoney(player, .10);
                     UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
                     break;
                 case "5":
-                    player.inventory.NumberOfSugar += 5;
-                    player.playerMoney -= .50;
+                    AddSugar(player, 5);
+                    SubtractMoney(player, .50);
                     UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
                     break;
                 case "10":
-                    player.inventory.NumberOfSugar += 10;
-                    player.playerMoney -= 1;
+                    AddSugar(player, 10);
+                    SubtractMoney(player, 1);
                     UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
                     break;
                 case "leave":
@@ -106,18 +79,18 @@ namespace LemonadeStand
             switch (userInput)
             {
                 case "10":
-                    player.inventory.NumberOfIce += 10;
-                    player.playerMoney -= .10;
+                    AddIce(player, 10);
+                    SubtractMoney(player, .10);
                     UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
                     break;
                 case "50":
-                    player.inventory.NumberOfIce += 50;
-                    player.playerMoney -= .50;
+                    AddIce(player, 50);
+                    SubtractMoney(player, .50);
                     UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
                     break;
                 case "100":
-                    player.inventory.NumberOfIce += 100;
-                    player.playerMoney -= 1;
+                    AddIce(player, 100);
+                    SubtractMoney(player, 1);
                     UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
                     break;
                 case "leave":
@@ -129,6 +102,22 @@ namespace LemonadeStand
                     UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
                     break;
             }
+        }
+        public void AddLemons(Player player, int amount)
+        {
+            player.inventory.NumberOfLemon += amount;
+        }
+        public void AddSugar(Player player, int amount)
+        {
+            player.inventory.NumberOfSugar += amount;
+        }
+        public void AddIce(Player player, int amount)
+        {
+            player.inventory.NumberOfIce += amount;
+        }
+        public void SubtractMoney(Player player, double amount)
+        {
+            player.playerMoney -= amount;
         }
     }
 }

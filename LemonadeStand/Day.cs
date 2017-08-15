@@ -11,7 +11,7 @@ namespace LemonadeStand
         public int cupsSold = 0;
         public int dayNumber = 1;
         
-        double totalMoneyForDay;
+        public double totalMoneyForDay;
         Weather CurrentWeather;
         Player player;
         UserInterface UI;
@@ -60,7 +60,7 @@ namespace LemonadeStand
                 UI.MainMenu(player, game, currentDay, CurrentWeather, UI);
             }
         }
-        private void GetToalAmountSold(Player player)
+        public void GetToalAmountSold(Player player)
         {
             totalMoneyForDay = cupsSold * player.cupPrice;
         }

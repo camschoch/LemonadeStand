@@ -38,6 +38,12 @@ namespace LemonadeStand
                 amountOfIceNeededPerPitcher = 64;
             }
         }
+        public void SubtractingNeededSupplies()
+        {
+            inventory.NumberOfLemon -= amountOfLemonNeeded;
+            inventory.NumberOfSugar -= amountOfSugarNeeded;
+            inventory.NumberOfIce -= amountOfIceNeededPerPitcher;
+        }
         public void SwitchCallNumberOfPitchers(Player player, Game game, Day currentDay,  Weather CurrentWeather, UserInterface UI)
         {
             string userInput = Console.ReadLine();
@@ -52,9 +58,7 @@ namespace LemonadeStand
                     }
                     else
                     {
-                        inventory.NumberOfLemon -= amountOfLemonNeeded;
-                        inventory.NumberOfSugar -= amountOfSugarNeeded;
-                        inventory.NumberOfIce -= amountOfIceNeededPerPitcher;
+                        SubtractingNeededSupplies();
                         pitchers++;
                     }
                     break;
@@ -67,9 +71,7 @@ namespace LemonadeStand
                     }
                     else
                     {
-                        inventory.NumberOfLemon -= amountOfLemonNeeded;
-                        inventory.NumberOfSugar -= amountOfSugarNeeded;
-                        inventory.NumberOfIce -= amountOfIceNeededPerPitcher;
+                        SubtractingNeededSupplies();
                         pitchers += 2;
                     }
                     break;
@@ -82,9 +84,7 @@ namespace LemonadeStand
                     }
                     else
                     {
-                        inventory.NumberOfLemon -= amountOfLemonNeeded;
-                        inventory.NumberOfSugar -= amountOfSugarNeeded;
-                        inventory.NumberOfIce -= amountOfIceNeededPerPitcher;
+                        SubtractingNeededSupplies();
                         pitchers += 3;
                     }
                     break;
@@ -97,9 +97,7 @@ namespace LemonadeStand
                     }
                     else
                     {
-                        inventory.NumberOfLemon -= amountOfLemonNeeded;
-                        inventory.NumberOfSugar -= amountOfSugarNeeded;
-                        inventory.NumberOfIce -= amountOfIceNeededPerPitcher;
+                        SubtractingNeededSupplies();
                         pitchers += 4;
                     }
                     break;
@@ -112,9 +110,7 @@ namespace LemonadeStand
                     }
                     else
                     {
-                        inventory.NumberOfLemon -= amountOfLemonNeeded;
-                        inventory.NumberOfSugar -= amountOfSugarNeeded;
-                        inventory.NumberOfIce -= amountOfIceNeededPerPitcher;
+                        SubtractingNeededSupplies();
                         pitchers += 5;
                     }
                     break;
@@ -127,9 +123,7 @@ namespace LemonadeStand
                     }
                     else
                     {
-                        inventory.NumberOfLemon -= amountOfLemonNeeded;
-                        inventory.NumberOfSugar -= amountOfSugarNeeded;
-                        inventory.NumberOfIce -= amountOfIceNeededPerPitcher;
+                        SubtractingNeededSupplies();
                         pitchers += 6;
                     }
                     break;
@@ -142,9 +136,7 @@ namespace LemonadeStand
                     }
                     else
                     {
-                        inventory.NumberOfLemon -= amountOfLemonNeeded;
-                        inventory.NumberOfSugar -= amountOfSugarNeeded;
-                        inventory.NumberOfIce -= amountOfIceNeededPerPitcher;
+                        SubtractingNeededSupplies();
                         pitchers += 7;
                     }
                     break;

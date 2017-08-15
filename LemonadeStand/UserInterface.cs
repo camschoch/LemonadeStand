@@ -41,6 +41,7 @@ namespace LemonadeStand
                     Console.WriteLine("You are now begining day number " + dayNumber);
                     Console.ReadLine();
                     dayNumber += 1;
+                    CurrentWeather.ActualWeather();
                     game.StartPlayerSetup(player, game, currentDay, CurrentWeather, UI);
                     game.StartDay(game);
                     break;
@@ -100,7 +101,7 @@ namespace LemonadeStand
                     break;
             }
         }
-        private void SetAmmountOfIce(Player player)
+        public void SetAmmountOfIce(Player player)
         {
             Console.WriteLine("How much ice would you like to add to each cup sold?");
             Console.WriteLine("2 = 2 ice per cup for a total of 16 needed to make a pitcher\n4 = 4 ice per cup for a total of 31 needed to make a pitcher\n8 = 8 ice per cup for a total of 64 needed to make a pitcher\n");
@@ -112,7 +113,7 @@ namespace LemonadeStand
             player.SetAmountOfIceNeededPerPitcher();
             player.SwitchCallNumberOfPitchers(player, game, currentDay, CurrentWeather, UI);
         }
-        private void SetPriceForDay(Player player)
+        public void SetPriceForDay(Player player)
         {
             Console.WriteLine("How much would you like to sell each cup for today? (ex. 1.25 or .50)");
             //USE THE TRY CATCH TO MAKE SURE USER INPUTS A NUMBER VALUE//
