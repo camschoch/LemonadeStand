@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Store
+    public class Store
     {
         //UserInterface UI;
         // Inventory inventory;
@@ -16,12 +16,12 @@ namespace LemonadeStand
             switch (userInput)
             {
                 case "1":
-                    player.inventory.NumberOfLemon++;
-                    player.playerMoney -= .10;
+                    AddOneLemon(player);
+                    SubtractTenCent(player);
                     UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
                     break;
                 case "5":
-                    player.inventory.NumberOfLemon += 5;
+                    AddFiveLemon(player);
                     player.playerMoney -= .50;
                     UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
                     break;
@@ -40,6 +40,34 @@ namespace LemonadeStand
                     break;
             }
 
+        }
+        public void AddOneLemon(Player player)
+        {
+            player.inventory.NumberOfLemon++;
+        }
+        public void AddFiveLemon(Player player)
+        {
+            player.inventory.NumberOfLemon += 5;
+        }
+        public void AddTenLemon(Player player)
+        {
+            player.inventory.NumberOfLemon += 10;
+        }
+        public void AddOneSugar(Player player)
+        {
+            player.inventory.NumberOfSugar++;
+        }
+        public void AddFiveSugar(Player player)
+        {
+            player.inventory.NumberOfSugar += 5;
+        }
+        public void AddTenSugar(Player player)
+        {
+            player.inventory.NumberOfSugar += 10;
+        }
+        public void SubtractTenCent(Player player)
+        {
+            player.playerMoney -= .10;
         }
         public void BuySugar(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI)
         {

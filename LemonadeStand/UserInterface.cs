@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class UserInterface
+    public class UserInterface
     {
         //Day currentDay;
         //Weather CurrentWeather;
+        int dayNumber = 1;
         public UserInterface()
         {
         }
@@ -19,7 +20,6 @@ namespace LemonadeStand
             Console.WriteLine("Welcome to the main menu. Would you like to visit the store, check the weather forcast, or start your day? (make sure you have the supplies you need to make lemonade for the day).");
             Console.WriteLine("1 = visit store\n2 = check forcast\n3 = start the day\n4 = check inventory\n5 = quit game");
             string userInput = Console.ReadLine();
-            int dayNumber = 1;
             if(dayNumber == 8)
             {
                 Console.WriteLine($"You have reached the end of the week! You have a total of ${player.playerMoney}");
@@ -65,7 +65,7 @@ namespace LemonadeStand
 
         //END MAIN MENU//
         //CHOOSING LEMONADE//
-        private void ChooseRecipe(Player player)
+        public void ChooseRecipe(Player player)
         {
             Console.WriteLine("Please choose a recipe you would like to make for the day. (type 1, 2, 3, or 4)");
             Console.WriteLine("1 = 4 lemons and 4 sugar cubes per pitcher for a standard taste.");

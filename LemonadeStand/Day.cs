@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Day
+    public class Day
     {
         public int cupsSold = 0;
         public int dayNumber = 1;
