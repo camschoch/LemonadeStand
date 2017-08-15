@@ -55,10 +55,9 @@ namespace LemonadeStand
             {
                 GetToalAmountSold(player);
                 player.playerMoney += totalMoneyForDay;
-                Console.WriteLine($"You have run out of lemoande for the day and have a total of ${player.playerMoney}");
-                Console.ReadLine();
+                Console.WriteLine("You have run out of lemoande for the day.");
+                DisplayEndOfDayResults(player, game, currentDay, CurrentWeather);
                 UI.MainMenu(player, game, currentDay, CurrentWeather, UI);
-                //DISPLAY END OF DAY RESULTS//
             }
         }
         private void GetToalAmountSold(Player player)
