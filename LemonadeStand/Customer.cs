@@ -20,10 +20,9 @@ namespace LemonadeStand
         public Customer()
         {
         }
-        private void GetWeatherThirst(Weather CurrentWeather)
+        private void GetWeatherThirst(Weather CurrentWeather, Random random)
         {
             
-            Random random = new Random();
             string weather = CurrentWeather.weather;
             if (weather == "sunny")
             {
@@ -86,9 +85,9 @@ namespace LemonadeStand
             }
         }
 
-        private void SetRandomBuyMax(double minValue, double maxValue)
+        private void SetRandomBuyMax(double minValue, double maxValue, Random random)
         {
-            Random random = new Random();
+           
             double next = random.NextDouble();
 
             double unRounded = minValue + (next * (maxValue - minValue));
@@ -96,9 +95,9 @@ namespace LemonadeStand
             maxBuyPrice = rounded;
         }
 
-        private void PreferedRecipe()
+        private void PreferedRecipe(Random random)
         {
-            Random random = new Random();
+           
             int randomNumber = random.Next(0, 7);
             List<string> recipies = new List<string> { "standard", "sour", "sweet", "strong", "strong", "strong", "strong" };
             customerPreferedRecipe = recipies[randomNumber];
@@ -163,9 +162,9 @@ namespace LemonadeStand
                 likelinessToBuy -= 15;
             }
         }
-        private void WillOrNotBuy(Day currentDay)
+        private void WillOrNotBuy(Day currentDay, Random random)
         {
-            Random random = new Random();
+            
             int randomNumber = random.Next(1, 101);
 
             if (randomNumber <= likelinessToBuy)
@@ -173,18 +172,18 @@ namespace LemonadeStand
                 currentDay.cupsSold++;
             }
         }
-        public void CallAllMethodsCustomer(Player player, Day currentDay, Weather CurrentWeather)
+        public void CallAllMethodsCustomer(Player player, Day currentDay, Weather CurrentWeather, Random random)
         {
-            GetWeatherThirst(CurrentWeather);
+            GetWeatherThirst(CurrentWeather, random);
             CalculateThirst(CurrentWeather);
             LikenessToBuyThirstLvl();
             SetPreferedIce();
             LikenessToBuyIce(player);
-            PreferedRecipe();
+            PreferedRecipe(random);
             LikenessToBuyTaste(player);
-            SetRandomBuyMax(0.50, 1.50);
+            SetRandomBuyMax(0.50, 1.50, random);
             LikenessToBuyPrice(player);
-            WillOrNotBuy(currentDay);
+            WillOrNotBuy(currentDay, random);
         }
     }
 }

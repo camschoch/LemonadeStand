@@ -44,7 +44,7 @@ namespace LemonadeStand
             inventory.NumberOfSugar -= amountOfSugarNeeded;
             inventory.NumberOfIce -= amountOfIceNeededPerPitcher;
         }
-        public void SwitchCallNumberOfPitchers(Player player, Game game, Day currentDay,  Weather CurrentWeather, UserInterface UI)
+        public void SwitchCallNumberOfPitchers(Player player, Game game, Day currentDay,  Weather CurrentWeather, UserInterface UI, Random random)
         {
             string userInput = Console.ReadLine();
             switch (userInput)
@@ -54,7 +54,7 @@ namespace LemonadeStand
                     {
                         Console.WriteLine("Sorry you are lacking one or more of the items required to make this.");
                         Console.ReadLine();
-                        UI.MainMenu(player, game, currentDay, CurrentWeather, UI);
+                        UI.MainMenu(player, game, currentDay, CurrentWeather, UI, random);
                     }
                     else
                     {
@@ -67,7 +67,7 @@ namespace LemonadeStand
                     {
                         Console.WriteLine("Sorry you are lacking one or more of the items required to make this many please choose a lower amount.");
                         Console.ReadLine();
-                        SwitchCallNumberOfPitchers(player, game, currentDay, CurrentWeather, UI);
+                        SwitchCallNumberOfPitchers(player, game, currentDay, CurrentWeather, UI, random);
                     }
                     else
                     {
@@ -80,7 +80,7 @@ namespace LemonadeStand
                     {
                         Console.WriteLine("Sorry you are lacking one or more of the items required to make this many please choose a lower amount.");
                         Console.ReadLine();
-                        SwitchCallNumberOfPitchers(player, game, currentDay, CurrentWeather, UI);
+                        SwitchCallNumberOfPitchers(player, game, currentDay, CurrentWeather, UI, random);
                     }
                     else
                     {
@@ -93,7 +93,7 @@ namespace LemonadeStand
                     {
                         Console.WriteLine("Sorry you are lacking one or more of the items required to make this many please choose a lower amount.");
                         Console.ReadLine();
-                        SwitchCallNumberOfPitchers(player, game, currentDay, CurrentWeather, UI);
+                        SwitchCallNumberOfPitchers(player, game, currentDay, CurrentWeather, UI, random);
                     }
                     else
                     {
@@ -106,7 +106,7 @@ namespace LemonadeStand
                     {
                         Console.WriteLine("Sorry you are lacking one or more of the items required to make this many please choose a lower amount.");
                         Console.ReadLine();
-                        SwitchCallNumberOfPitchers(player, game, currentDay, CurrentWeather, UI);
+                        SwitchCallNumberOfPitchers(player, game, currentDay, CurrentWeather, UI, random);
                     }
                     else
                     {
@@ -119,7 +119,7 @@ namespace LemonadeStand
                     {
                         Console.WriteLine("Sorry you are lacking one or more of the items required to make this many please choose a lower amount.");
                         Console.ReadLine();
-                        SwitchCallNumberOfPitchers(player, game, currentDay, CurrentWeather, UI);
+                        SwitchCallNumberOfPitchers(player, game, currentDay, CurrentWeather, UI, random);
                     }
                     else
                     {
@@ -132,7 +132,7 @@ namespace LemonadeStand
                     {
                         Console.WriteLine("Sorry you are lacking one or more of the items required to make this many please choose a lower amount.");
                         Console.ReadLine();
-                        SwitchCallNumberOfPitchers(player, game, currentDay, CurrentWeather, UI);
+                        SwitchCallNumberOfPitchers(player, game, currentDay, CurrentWeather, UI, random);
                     }
                     else
                     {

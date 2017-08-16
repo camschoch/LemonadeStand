@@ -77,13 +77,14 @@ namespace LemonadeStandUnitTest
         public void TestGetTotalAmountSold()
         {
             Player player = new Player();
+            Random random = new Random();
             UserInterface UI = new UserInterface();
             Weather CurrentWeather = new Weather();
             Day currentDay = new Day(player, UI, CurrentWeather);
             double expectedResult = 16;
             currentDay.cupsSold = 8;
             player.cupPrice = 2;
-            currentDay.GetToalAmountSold(player);
+            currentDay.GetToalAmountSold(player, random);
 
             double actualResult = currentDay.totalMoneyForDay;
 

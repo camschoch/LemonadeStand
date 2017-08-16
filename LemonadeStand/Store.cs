@@ -10,7 +10,7 @@ namespace LemonadeStand
     {
         //UserInterface UI;
         // Inventory inventory;
-        public void BuyLemons(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI)
+        public void BuyLemons(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI, Random random)
         {
             string userInput = Console.ReadLine();
             switch (userInput)
@@ -18,31 +18,31 @@ namespace LemonadeStand
                 case "1":
                     AddLemons(player, 1);
                     SubtractMoney(player, .10);
-                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
+                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI, random);
                     break;
                 case "5":
                     AddLemons(player, 5);
                     SubtractMoney(player, .50);
-                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
+                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI, random);
                     break;
                 case "10":
                     AddLemons(player, 10);
                     SubtractMoney(player, 1);
-                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
+                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI, random);
                     break;
                 case "leave":
-                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
+                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI, random);
                     break;
                 default:
                     Console.WriteLine("Sorry that wasn't an option please try again.");
                     Console.ReadLine();
-                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
+                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI, random);
                     break;
             }
 
         }
        
-        public void BuySugar(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI)
+        public void BuySugar(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI, Random random)
         {
             string userInput = Console.ReadLine();
             switch (userInput)
@@ -50,30 +50,30 @@ namespace LemonadeStand
                 case "1":
                     AddSugar(player, 1);
                     SubtractMoney(player, .10);
-                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
+                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI, random);
                     break;
                 case "5":
                     AddSugar(player, 5);
                     SubtractMoney(player, .50);
-                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
+                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI, random);
                     break;
                 case "10":
                     AddSugar(player, 10);
                     SubtractMoney(player, 1);
-                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
+                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI, random);
                     break;
                 case "leave":
-                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
+                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI, random);
                     break;
                 default:
                     Console.WriteLine("Sorry that wasn't an option please try again.");
                     Console.ReadLine();
-                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
+                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI, random);
                     break;
             }
 
         }
-        public void BuyIce(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI)
+        public void BuyIce(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI, Random random)
         {
             string userInput = Console.ReadLine();
             switch (userInput)
@@ -81,25 +81,25 @@ namespace LemonadeStand
                 case "10":
                     AddIce(player, 10);
                     SubtractMoney(player, .10);
-                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
+                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI, random);
                     break;
                 case "50":
                     AddIce(player, 50);
                     SubtractMoney(player, .50);
-                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
+                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI, random);
                     break;
                 case "100":
                     AddIce(player, 100);
                     SubtractMoney(player, 1);
-                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
+                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI, random);
                     break;
                 case "leave":
-                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
+                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI, random);
                     break;
                 default:
                     Console.WriteLine("Sorry that wasn't an option please try again.");
                     Console.ReadLine();
-                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
+                    UI.PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI, random);
                     break;
             }
         }

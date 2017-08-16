@@ -21,9 +21,8 @@ namespace LemonadeStand
             this.UI = UI;
             this.CurrentWeather = CurrentWeather;
         }
-        private int GetNumberOfCustomers()
+        private int GetNumberOfCustomers(Random random)
         {
-            Random random = new Random();
             if (CurrentWeather.weather == "sunny")
             {
                 int numberOfCustomers = random.Next(100, 150);
@@ -45,7 +44,7 @@ namespace LemonadeStand
                 return numberOfCustomers;
             }
         }
-        private void CheckPitchersSold(Game game, Day currentDay)
+        private void CheckPitchersSold(Game game, Day currentDay, Random random)
         {
             if(cupsSold % 8 == 0 && cupsSold != 0)
             {
@@ -53,39 +52,39 @@ namespace LemonadeStand
             }
             else if(player.pitchers == 0)
             {
-                GetToalAmountSold(player);
+                GetToalAmountSold(player, random);
                 player.playerMoney += totalMoneyForDay;
                 Console.WriteLine("You have run out of lemoande for the day.");
-                DisplayEndOfDayResults(player, game, currentDay, CurrentWeather);
-                UI.MainMenu(player, game, currentDay, CurrentWeather, UI);
+                DisplayEndOfDayResults(player, game, currentDay, CurrentWeather, random);
+                UI.MainMenu(player, game, currentDay, CurrentWeather, UI, random);
             }
         }
-        public void GetToalAmountSold(Player player)
+        public void GetToalAmountSold(Player player, Random random)
         {
             totalMoneyForDay = cupsSold * player.cupPrice;
         }
-        private void DisplayEndOfDayResults(Player player, Game game, Day currentDay, Weather CurrentWeather)
+        private void DisplayEndOfDayResults(Player player, Game game, Day currentDay, Weather CurrentWeather, Random random)
         {
             Console.WriteLine($"You have sold {cupsSold} cups and now have a total of ${player.playerMoney}");
             Console.ReadLine();
-            UI.MainMenu(player, game, currentDay, CurrentWeather, UI);
+            UI.MainMenu(player, game, currentDay, CurrentWeather, UI, random);
         }
-        private void SetAllCustomers(Player player, Game game, Day currentDay, Weather CurrentWeather)
+        private void SetAllCustomers(Player player, Game game, Day currentDay, Weather CurrentWeather, Random random)
         {
-            int numberOfCustomers = GetNumberOfCustomers();
+            int numberOfCustomers = GetNumberOfCustomers(random);
             for (int i = 0; i < numberOfCustomers; i++)
             {
                 Customer tempCustomer = new Customer();
-                tempCustomer.CallAllMethodsCustomer(player, currentDay, CurrentWeather);
-                CheckPitchersSold(game, currentDay);
+                tempCustomer.CallAllMethodsCustomer(player, currentDay, CurrentWeather, random);
+                CheckPitchersSold(game, currentDay, random);
             }
         }
-        public void CallAllMethodsDay(Player player, Game game, Day currentDay, Weather CurrentWeather)
+        public void CallAllMethodsDay(Player player, Game game, Day currentDay, Weather CurrentWeather, Random random)
         {
-            SetAllCustomers(player, game, currentDay, CurrentWeather);
-            GetToalAmountSold(player);
+            SetAllCustomers(player, game, currentDay, CurrentWeather, random);
+            GetToalAmountSold(player, random);
             player.playerMoney += totalMoneyForDay;
-            DisplayEndOfDayResults(player, game, currentDay, CurrentWeather);
+            DisplayEndOfDayResults(player, game, currentDay, CurrentWeather, random);
         }
     }
 }

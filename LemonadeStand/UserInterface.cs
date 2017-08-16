@@ -15,7 +15,7 @@ namespace LemonadeStand
         {
         }
         //MAIN MENU//
-        public void MainMenu(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI)
+        public void MainMenu(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI, Random random)
         {
             Console.WriteLine("Welcome to the main menu. Would you like to visit the store, check the weather forcast, or start your day? (make sure you have the supplies you need to make lemonade for the day).");
             Console.WriteLine("1 = visit store\n2 = check forcast\n3 = start the day\n4 = check inventory\n5 = quit game");
@@ -30,26 +30,26 @@ namespace LemonadeStand
             switch (userInput)
             {
                 case "1":
-                    PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
+                    PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI, random);
                     break;
                 case "2":
                     Console.WriteLine("the forcast for today is " + CurrentWeather.weather + " and " + CurrentWeather.temp + " degrees.");
                     Console.ReadLine();
-                    MainMenu(player, game, currentDay, CurrentWeather, UI);
+                    MainMenu(player, game, currentDay, CurrentWeather, UI, random);
                     break;
                 case "3":
                     Console.WriteLine("You are now begining day number " + dayNumber);
                     Console.ReadLine();
                     dayNumber += 1;
-                    CurrentWeather.ActualWeather();
-                    game.StartPlayerSetup(player, game, currentDay, CurrentWeather, UI);
+                    CurrentWeather.ActualWeather(random);
+                    game.StartPlayerSetup(player, game, currentDay, CurrentWeather, UI, random);
                     game.StartDay(game);
                     break;
                 case "4":
                     Console.WriteLine($"You have {player.inventory.NumberOfLemon} lemons, {player.inventory.NumberOfSugar} sugar cubes, and {player.inventory.NumberOfIce} ice cubes");
                     Console.WriteLine($"You have ${player.playerMoney}");
                     Console.ReadLine();
-                    MainMenu(player, game, currentDay, CurrentWeather, UI);
+                    MainMenu(player, game, currentDay, CurrentWeather, UI, random);
                     break;
                 case "5":
                     Console.WriteLine("Thanks for playing!");
@@ -58,7 +58,7 @@ namespace LemonadeStand
                     break;
                 default:
                     Console.WriteLine("Sorry we didn't understand please try again.");
-                    MainMenu(player, game, currentDay, CurrentWeather, UI);
+                    MainMenu(player, game, currentDay, CurrentWeather, UI, random);
                     break;
             }
         }
@@ -107,11 +107,11 @@ namespace LemonadeStand
             Console.WriteLine("2 = 2 ice per cup for a total of 16 needed to make a pitcher\n4 = 4 ice per cup for a total of 31 needed to make a pitcher\n8 = 8 ice per cup for a total of 64 needed to make a pitcher\n");
             player.amountOfIceNeededPerCup = int.Parse(Console.ReadLine());
         }
-        private void SetNumberOfPitchers(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI)
+        private void SetNumberOfPitchers(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI, Random random)
         {
             Console.WriteLine("How many pitchers would you like to make for the day? Max is 7.");
             player.SetAmountOfIceNeededPerPitcher();
-            player.SwitchCallNumberOfPitchers(player, game, currentDay, CurrentWeather, UI);
+            player.SwitchCallNumberOfPitchers(player, game, currentDay, CurrentWeather, UI, random);
         }
         public void SetPriceForDay(Player player)
         {
@@ -121,55 +121,55 @@ namespace LemonadeStand
             double test = double.Parse(userSetCupPrice);
             player.cupPrice = test;
         }
-        public void CallAllChoosingLemonade(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI)
+        public void CallAllChoosingLemonade(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI, Random random)
         {
             ChooseRecipe(player);
             SetAmmountOfIce(player);
-            SetNumberOfPitchers(player, game, currentDay, CurrentWeather, UI);
+            SetNumberOfPitchers(player, game, currentDay, CurrentWeather, UI, random);
             SetPriceForDay(player);
         }
         //END CHOOSING LEMONADE//
         //BEGIN OF STORE INTERACTION//
-        public void PlayerStoreOptions(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI)
+        public void PlayerStoreOptions(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI, Random random)
         {
             Console.WriteLine("Welcome to the store what would you like to buy?\n1 = Lemons\n2 = Sugar\n3 = Ice\n4 = Leave store");
             string userInput = Console.ReadLine();
             switch (userInput)
             {
                 case "1":
-                    BuyLemonsPrompt(player, game, currentDay, CurrentWeather, UI);
+                    BuyLemonsPrompt(player, game, currentDay, CurrentWeather, UI, random);
                     break;
                 case "2":
-                    BuySugarPrompt(player, game, currentDay, CurrentWeather, UI);
+                    BuySugarPrompt(player, game, currentDay, CurrentWeather, UI, random);
                     break;
                 case "3":
-                    BuyIcePrompt(player, game, currentDay, CurrentWeather, UI);
+                    BuyIcePrompt(player, game, currentDay, CurrentWeather, UI, random);
                     break;
                 case "4":
-                    MainMenu(player, game, currentDay, CurrentWeather, UI);
+                    MainMenu(player, game, currentDay, CurrentWeather, UI, random);
                     break;
                 default:
                     Console.WriteLine("Sorry please try again.");
                     Console.ReadLine();
-                    PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI);
+                    PlayerStoreOptions(player, game, currentDay, CurrentWeather, UI, random);
                     break;
             }
         }
-        public void BuyLemonsPrompt(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI)
+        public void BuyLemonsPrompt(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI, Random random)
         {
             Console.WriteLine("How many lemons would you like to buy?\n1= $0.10\n5 = $0.50\n10 = $1\n(type leave if you don't want to buy)");
-            player.store.BuyLemons(player, game, currentDay, CurrentWeather, UI);
+            player.store.BuyLemons(player, game, currentDay, CurrentWeather, UI, random);
 
         }
-        public void BuySugarPrompt(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI)
+        public void BuySugarPrompt(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI, Random random)
         {
             Console.WriteLine("How many sugar cubes would you like to buy?\n1= $0.10\n5 = $0.50\n10 = $1\n(type leave if you don't want to buy)");
-            player.store.BuySugar(player, game, currentDay, CurrentWeather, UI);
+            player.store.BuySugar(player, game, currentDay, CurrentWeather, UI, random);
         }
-        public void BuyIcePrompt(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI)
+        public void BuyIcePrompt(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI, Random random)
         {
             Console.WriteLine("How many ice cubes would you like to buy?\n10= $0.10\n50 = $0.50\n100 = $1\n(type leave if you don't want to buy)");
-            player.store.BuyIce(player, game, currentDay, CurrentWeather, UI);
+            player.store.BuyIce(player, game, currentDay, CurrentWeather, UI, random);
         }
     }
     //END OF STORE INTERACTION//

@@ -12,28 +12,28 @@ namespace LemonadeStand
         UserInterface UI = new UserInterface();
         public Player player = new Player();
         public Weather CurrentWeather;
-        //public Day currenDay;
-        
+        Random random = new Random();
+
         public void StartGame(Game game)
         {
             
             CurrentWeather = new Weather();
-            CurrentWeather.GetWeatherForcast();
-            UI.MainMenu(player, game, currentDay, CurrentWeather, UI);
+            CurrentWeather.GetWeatherForcast(random);
+            UI.MainMenu(player, game, currentDay, CurrentWeather, UI, random);
         }
         public void InUI()
         {
              UI = new UserInterface();
         }
-        public void StartPlayerSetup(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI)
+        public void StartPlayerSetup(Player player, Game game, Day currentDay, Weather CurrentWeather, UserInterface UI, Random random)
         {
-            UI.CallAllChoosingLemonade(player, game, currentDay, CurrentWeather, UI);
+            UI.CallAllChoosingLemonade(player, game, currentDay, CurrentWeather, UI, random);
         }
         public void StartDay(Game game)
         {
             currentDay = new Day(player, UI, CurrentWeather);
-            CurrentWeather.ActualWeather();
-            currentDay.CallAllMethodsDay(player, game, currentDay, CurrentWeather);
+            CurrentWeather.ActualWeather(random);
+            currentDay.CallAllMethodsDay(player, game, currentDay, CurrentWeather, random);
         }
     }
 }
