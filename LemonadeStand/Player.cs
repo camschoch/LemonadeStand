@@ -18,11 +18,10 @@ namespace LemonadeStand
         public int amountOfIceNeededPerPitcher;
         public Inventory inventory = new Inventory();
         public Store store = new Store();
-        //UserInterface UI;
         public Player()
         {
         }
-
+   
         public void SetAmountOfIceNeededPerPitcher()
         {
             if (amountOfIceNeededPerCup == 2)
